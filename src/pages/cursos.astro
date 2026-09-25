@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { whatsappLink, withBase } from '../site';
 
-const checkout = 'https://alquimiaascensional.online/formacao-de-taro-para-gente-real-chkt-a';
+const checkout = 'https://checkout.thebank.com.br/7474776489247690752';
 const whatsapp = whatsappLink('Oi, Aline. Vim pelo site e quero tirar uma dúvida sobre a Formação em Tarô para Gente Real.');
 
 const aprende = [
@@ -27,18 +27,23 @@ const formato = [
   ['No seu ritmo', 'Conteúdo autoguiado, para assistir quando e quantas vezes quiser.'],
   ['Certificado', 'Formação com certificado de conclusão ao final.'],
   ['Garantia de 7 dias', 'Entrou, não era para você? Devolvo 100% do valor, sem pergunta.'],
+  ['Acesso vitalício', 'Seu conteúdo não expira. Volte e reassista quando quiser, para sempre, sem pagar nada a mais.'],
 ];
 ---
 <BaseLayout title="Formação em Tarô para Gente Real · Curso com Aline Antunes" description="Aprenda a ler Tarô como um mapa prático da vida real: os arcanos por personalidades reconhecíveis, sem decoreba e sem mistério. Início imediato, certificado e garantia de 7 dias.">
   <!-- Hero -->
   <section class="section intro-sec glow">
     <div class="read center">
+      <div class="escola-bar" data-reveal>
+        <img src={withBase('/img/escola-alquimia.jpg')} alt="Escola de Alquimia Ascensional" class="escola-logo" width="56" height="56" />
+        <span class="escola-label">Escola de Alquimia Ascensional</span>
+      </div>
       <span class="eyebrow" data-reveal>Curso de tarô terapêutico</span>
       <h1 data-reveal style="--reveal-delay:80ms">O Tarô não precisa ser um mistério medieval guardado em imagens difíceis</h1>
       <p class="lead" data-reveal style="--reveal-delay:140ms">Aprenda a ler as cartas como um mapa prático de quem você é e do momento que vive. Uma metodologia que liga cada arcano a uma figura que você já reconhece, para você ler com precisão desde a primeira aula, sem decorar significado nenhum.</p>
       <div class="hero-cta" data-reveal style="--reveal-delay:200ms">
         <a href={checkout} class="btn btn-gold" target="_blank" rel="noopener">Quero fazer a formação</a>
-        <p class="proof-mini">Acesso imediato · em até 12x de R$ 160,99 · garantia de 7 dias</p>
+        <p class="proof-mini">Acesso imediato · Acesso vitalício · em até 12x de R$ 129,15 · garantia de 7 dias</p>
       </div>
     </div>
   </section>
@@ -103,8 +108,8 @@ const formato = [
       <p class="rule" aria-hidden="true"><span class="sparkle">✦</span></p>
       <span class="eyebrow">Matrícula aberta</span>
       <h2 data-reveal>Comece hoje a ler com segurança</h2>
-      <p class="preco" data-reveal>até <strong>12x de R$ 160,99</strong></p>
-      <p class="muted preco-sub" data-reveal>Acesso imediato à área de membros. Certificado de conclusão. E uma garantia incondicional: se em 7 dias você sentir que não era para você, devolvo todo o valor.</p>
+      <p class="preco" data-reveal>Em até <strong>12x de R$ 129,15</strong></p>
+      <p class="muted preco-sub" data-reveal>Acesso imediato e vitalício à área de membros. Certificado de conclusão. Garantia incondicional: se em 7 dias você sentir que não era para você, devolvo todo o valor.</p>
       <div class="preco-cta" data-reveal style="--reveal-delay:120ms">
         <a href={checkout} class="btn btn-gold" target="_blank" rel="noopener">Garantir minha matrícula</a>
         <a href={whatsapp} class="btn btn-ghost-light" rel="noopener">Tirar uma dúvida no WhatsApp</a>
@@ -153,11 +158,18 @@ const formato = [
     border-left: 2px solid var(--gold); border-radius: 0 10px 10px 0;
   }
 
+  /* Escola badge */
+  .escola-bar { text-align: left; display: flex; align-items: center; gap: var(--s3); margin-bottom: var(--s7); }
+  .escola-logo { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; object-position: center; border: 2px solid color-mix(in srgb, var(--gold) 55%, transparent); flex-shrink: 0; }
+  .escola-label { font-size: .78rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: color-mix(in srgb, var(--on-dark) 65%, transparent); }
+
   /* Formato */
   .formato-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); margin-top: var(--s6); }
   .formato-item { padding: var(--s5); border: 1px solid var(--line); border-radius: 14px; background: var(--paper-2); }
   .formato-item h3 { margin: 0 0 var(--s2); font-size: 1.18rem; color: var(--gold); }
   .formato-item p { margin: 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.55; }
+  .formato-item:last-child:nth-child(odd) { grid-column: 1 / -1; background: color-mix(in srgb, var(--gold) 8%, var(--paper-2)); border-color: color-mix(in srgb, var(--gold) 40%, transparent); }
+  .formato-item:last-child:nth-child(odd) h3 { color: var(--gold-bright); }
   @media (max-width: 600px) { .formato-grid { grid-template-columns: 1fr; } }
 
   /* Preço */
