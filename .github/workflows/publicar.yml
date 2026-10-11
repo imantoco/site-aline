@@ -1,0 +1,42 @@
+# Publica alineantunes.com: todo push na main compila (Astro) e substitui a gh-pages.
+# Manual: Actions → "Publicar alineantunes.com" → Run workflow (publicar=false só compila, para testar).
+# Criado no kickoff do Imanto-OS em 2026-10-11 (infra/acessos.md, sites/README.md).
+name: Publicar alineantunes.com
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['**.md']
+  workflow_dispatch:
+    inputs:
+      publicar:
+        description: "Publicar no ar? (false = só compila)"
+        type: boolean
+        default: true
+permissions:
+  contents: write
+concurrency:
+  group: publicar-site
+  cancel-in-progress: false
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Publicar na gh-pages
+        if: github.event_name == 'push' || inputs.publicar
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          force_orphan: true
+          cname: alineantunes.com
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          full_commit_message: "Deploy: ${{ github.event.head_commit.message || 'manual' }}"
